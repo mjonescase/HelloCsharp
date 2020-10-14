@@ -1,0 +1,18 @@
+version: 2.1
+
+orbs:
+  dotnet: circleci/windows@2.4.0
+
+jobs:
+  test:
+    executor:
+      name: dotnet/default
+    steps:
+      - checkout
+      - run: dotnet restore
+      - run: dotnet test ./tests/HelloCsharpTests/HelloCsharpTests.csproj
+
+workflows:
+  checkout_and_test:
+    jobs:
+      - test
